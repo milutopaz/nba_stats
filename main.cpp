@@ -59,6 +59,99 @@ const std::string PLAYER_FIELD_NAMES[50] = {
     "true_shooting_PCT1",
 };
 
+class NBAPlayer {
+    private:
+        struct CoreInfo {
+            std::string first_name;
+            std::string last_name;
+            int ID;
+        };
+        struct CountingStats {
+            int games;
+            int minutes;
+            int offensive_rebounds;
+            int defensive_rebounds;
+            int total_rebounds;
+            int assists;
+            int steals;
+            int blocks;
+            int turnovers;
+            int personal_fouls;
+        };
+        struct AdvancedStats {
+            float assist_turnover_ratio;
+            float steal_turnover_ratio;
+            float efg;
+            float ts;
+            float efg_pct1;
+            float ts_pct1;
+        };
+        struct StatRanks {
+            int games_played_rank;
+            int minutes_rank;
+            int field_goals_made_rank;
+            int field_goal_attempts_rank;
+            int field_goal_percent_rank;
+            int three_pointers_made_rank;
+            int three_pointers_attempted_rank;
+            int three_pointer_percent_rank;
+            int free_throws_made_rank;
+            int free_throw_attempts_rank;
+            int free_throw_percent_rank;
+            int offensive_rebounds_rank;
+            int defensive_rebounds_rank;
+            int total_rebounds_rank;
+            int assists_rank;
+            int steals_rank;
+            int blocks_rank;
+            int turnovers_rank;
+            int personal_fouls_rank;
+            int points_rank;
+            int assist_turnover_ratio_rank;
+            int steal_turnover_ratio_rank;
+        };
+        struct ShootingAttempts {
+            int fg;
+            int ft;
+            int tp;
+        };
+        struct ShootingMakes {
+            int fg;
+            int ft;
+            int tp;
+        };
+        struct ShootingPercents {
+            float fg;
+            float ft;
+            float 3p;
+        };
+
+        ShootingAttempts attempts;
+        ShootingMakes makes;
+        ShootingPercents percents;
+        CountingStats counting;
+        StatRanks ranks;
+        AdvancedStats advanced;
+        CoreInfo core;
+    public:
+        const std::string& getName() const;
+        const int getID() const;
+
+        const CountingStats& getCounting() const { return counting}
+        const ShootingAttempts& getAttempts() const { return attempts }
+        const ShootingMakes& getMakes() const { return makes }
+        const ShootingPercents& getPercents() const { return percents }
+        const StatRanks& getRanks() const { return ranks }
+        const AdvancedStats& getAdvanced() const { return advanced }
+        const CoreInfo& getCore() const { return core }
+
+        const std::string getName() const { 
+            
+         }
+
+        double calculatePER() const;
+};
+
 //split string on delimiter into vector<string>
 std::vector<std::string> split_delim(const std::string& s, const std::string& delimiter) {
     std::vector<std::string> tokens;
